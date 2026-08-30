@@ -27,14 +27,14 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
           service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
-                    token_format: access_token
+
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
       - name: Configure Docker for Artifact Registry
-        run: echo "${{ steps.auth.outputs.access_token }}" | docker login -u oauth2accesstoken --password-stdin https://${{ env.REGION }}-docker.pkg.dev
-
+              run: gcloud auth login --cred-file="${GOOGLE_GHA_CREDS_PATH}" --quiet && gcloud auth configure-docker "${{ env.REGION }}-docker.pkg.dev" --quiet
+        
       - name: Build image
         run: |
           docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }} .
