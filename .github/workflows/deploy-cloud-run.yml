@@ -5,10 +5,10 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: your-gcp-project-id     # TODO: 换成你自己创建的 GCP project ID
-  REGION: us-central1
-  REPOSITORY: fastapi-user-crud       # Artifact Registry 仓库名
-  SERVICE: fastapi-user-crud          # Cloud Run 服务名
+  PROJECT_ID: firstapi-cloudrun-zhihan26     # TODO: 换成你自己创建的 GCP project ID
+  REGION: australia-southeast1
+  REPOSITORY: cloud-run-demo       # Artifact Registry 仓库名
+  SERVICE: cloud-run-demo          # Cloud Run 服务名
 
 permissions:
   contents: read
